@@ -229,120 +229,103 @@ class HomePage extends StatelessWidget {
                 ],
               ),
             ),
-            Card(
-              margin: EdgeInsets.only(top: 20.0),
-              elevation: 4,
-              child: SizedBox(
-                width: 150,
-                height: 190,
-                child: Padding(
-                  padding: EdgeInsets.all(8),
+            SizedBox(height: 20.0,),
+            Container(
+              child: Expanded(
+                child: SingleChildScrollView(
+                  physics: BouncingScrollPhysics(),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      SizedBox(
-                          width: 150,
-                          height: 100,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: Image.asset(
-                              "assets/images/food1.jpg",
-                              fit: BoxFit.cover,
-                            ),
-                          )),
-                      Container(
-                        margin: EdgeInsets.only(top: 5.0),
-                        child: const Text("Food 1 Name"),
-                      ),
-                      const Text(
-                        "\$10.0",
-                        style: TextStyle(color: Colors.black45),
-                      ),
                       Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Icon(Icons.star),
-                          Text("4.5"),
-                          Spacer(),
-                          Container(
-                            margin: EdgeInsets.only(left: 20.0),
-                            decoration: BoxDecoration(
-                              color: Colors.red,
-                              border: Border.all(color: Colors.black),
-                              borderRadius: BorderRadius.circular(50),
-                            ),
-                            child: const Icon(
-                              Icons.favorite_outlined,
-                              color: Colors.white,
-                            ),
-                          ),
+                          buildFoodCard("assets/images/food1.jpg", "Food 1 Name"),
+                          buildFoodCard("assets/images/food2.jpg", "Food 2 Name"),
                         ],
                       ),
+                      SizedBox(height: 20.0),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          buildFoodCard("assets/images/food3.jpg", "Food 3 Name"),
+                          buildFoodCard("assets/images/food4.jpg", "Food 4 Name"),
+                        ],
+                      ),
+                      SizedBox(height: 20.0),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          buildFoodCard("assets/images/food5.jpg", "Food 5 Name"),
+                          buildFoodCard("assets/images/food6.jpg", "Food 6 Name"),
+                        ],
+                      ),
+                      SizedBox(height: 20.0),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          buildFoodCard("assets/images/food7.jpg", "Food 5 Name"),
+                          buildFoodCard("assets/images/food8.jpg", "Food 6 Name"),
+                        ],
+                      ),
+                      SizedBox(height: 40.0,),
                     ],
                   ),
                 ),
               ),
             ),
-            Card(
-              margin: EdgeInsets.only(top: 20.0),
-              elevation: 4,
-              child: Container(
-                width: 150,
-                height: 190,
-                child: Padding(
-                  padding: EdgeInsets.all(8),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                          width: 150,
-                          height: 100,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: Image.asset(
-                              "assets/images/food2.jpg",
-                              fit: BoxFit.cover,
-                            ),
-                          )),
-                      Container(
-                        margin: EdgeInsets.only(top: 5.0),
-                        child: Text("Food 2 Name"),
-                      ),
-                      Text(
-                        "\$10.0",
-                        style: TextStyle(color: Colors.black45),
-                      ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Icon(Icons.star),
-                          Text("4.5"),
-                          Spacer(),
-                          Container(
-                            margin: EdgeInsets.only(left: 20.0),
-                            decoration: BoxDecoration(
-                              color: Colors.red,
-                              border: Border.all(color: Colors.black),
-                              borderRadius: BorderRadius.circular(50),
-                            ),
-                            child: const Icon(
-                              Icons.favorite_outlined,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
+            Container(
+              margin: EdgeInsets.only(top: 10.0, bottom: 20.0),
+              width: 500,
+              child: ElevatedButton(
+                onPressed: (){
+                  Get.snackbar("Hey Buddy!!", "Order Placed");
+                },
+                child: Text("Order"),
               ),
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget buildFoodCard(String imagePath, String label) {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 10.0),
+      width: 170,
+      height: 200,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20.0),
+        border: Border.all(
+          color: Colors.black,
+        ),
+      ),
+      child: Column(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(20.0),
+            child: Container(
+              margin: EdgeInsets.only(top: 5.0),
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.white),
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              child: Image.asset(
+                imagePath,
+                width: 150,
+                height: 130,
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          SizedBox(width: 5.0),
+          Text(
+            label,
+            textAlign: TextAlign.center,
+            style: TextStyle(height: 2),
+          ),
+        ],
       ),
     );
   }
